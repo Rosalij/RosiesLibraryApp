@@ -22,8 +22,9 @@ public class Database
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Title TEXT NOT NULL,
                 Author TEXT NOT NULL,
-                ISBN TEXT NOT NULL,
-                Year INTEGER NOT NULL
+                ISBN TEXT NOT NULL UNIQUE,
+                Year INTEGER NOT NULL,
+                Copies INTEGER NOT NULL DEFAULT 1
             );";
 
         using var cmd = new SqliteCommand(createTable, conn); 

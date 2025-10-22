@@ -7,4 +7,5 @@ public class Book
     public string Author { get; set; } = "";
     public string ISBN { get; set; } = "";
     public int Year { get; set; }
+    public int Copies { get; set; } = 1;
 }
