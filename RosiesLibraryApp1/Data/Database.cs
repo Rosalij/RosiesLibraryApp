@@ -17,17 +17,56 @@ public class Database
         using var conn = new SqliteConnection(ConnectionString); 
         conn.Open();
 
-        string createTable = @"
+        string createBooksTable = @"
             CREATE TABLE IF NOT EXISTS Books (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Title TEXT NOT NULL,
                 Author TEXT NOT NULL,
                 ISBN TEXT NOT NULL UNIQUE,
                 Year INTEGER NOT NULL,
-                Copies INTEGER NOT NULL DEFAULT 1
-            );";
+                Copies INTEGER NOT NULL DEFAULT 1 
+             );";
 
-        using var cmd = new SqliteCommand(createTable, conn); 
+        string createUsersTable = @"
+            CREATE TABLE IF NOT EXISTS Users (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Username TEXT NOT NULL UNIQUE,
+                Email TEXT NOT NULL UNIQUE,
+                Password TEXT NOT NULL 
+             );";
+
+        string createRentalsTable = @"  
+            CREATE TABLE IF NOT EXISTS Rentals (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                UserId INTEGER NOT NULL,
+                BookId INTEGER NOT NULL,
+                RentDate TEXT NOT NULL,
+                ReturnDate TEXT,
+                FOREIGN KEY(UserId) REFERENCES Users(Id),
+                FOREIGN KEY(BookId) REFERENCES Books(Id)
+             );";
+
+        string createReviewsTable = @"
+            CREATE TABLE IF NOT EXISTS Reviews (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                BookId INTEGER NOT NULL,
+                UserId INTEGER NOT NULL,
+                Rating INTEGER NOT NULL CHECK(Rating >= 1 AND Rating <= 5),
+                Comment TEXT,
+                FOREIGN KEY(BookId) REFERENCES Books(Id),
+                FOREIGN KEY(UserId) REFERENCES Users(Id)
+             );";
+
+        using var cmd = new SqliteCommand(createBooksTable, conn); 
         cmd.ExecuteNonQuery();
+        
+        using var cmd2 = new SqliteCommand(createUsersTable, conn);
+        cmd2.ExecuteNonQuery();
+
+        using var cmd3 = new SqliteCommand(createRentalsTable, conn);
+        cmd3.ExecuteNonQuery();
+
+        using var cmd4 = new SqliteCommand(createReviewsTable, conn);
+        cmd4.ExecuteNonQuery();
     }
 }

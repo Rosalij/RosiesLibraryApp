@@ -35,7 +35,6 @@ namespace RosiesLibraryApp
             loadButton = new Button();
             deleteButton = new Button();
             dataGridView1 = new DataGridView();
-            label1 = new Label();
             authorText = new TextBox();
             titleText = new TextBox();
             yearText = new TextBox();
@@ -58,6 +57,9 @@ namespace RosiesLibraryApp
             updateButton = new Button();
             copiesUpdate = new TextBox();
             label11 = new Label();
+            userDashboardButton = new Button();
+            label1 = new Label();
+            label12 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -74,7 +76,7 @@ namespace RosiesLibraryApp
             // 
             // loadButton
             // 
-            loadButton.Location = new Point(713, 123);
+            loadButton.Location = new Point(533, 123);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(75, 23);
             loadButton.TabIndex = 1;
@@ -89,7 +91,7 @@ namespace RosiesLibraryApp
             deleteButton.TabIndex = 3;
             deleteButton.Text = "Delete selected book";
             deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += deleteButton_Click_1;
+            deleteButton.Click += deleteButton_Click;
             // 
             // dataGridView1
             // 
@@ -116,16 +118,6 @@ namespace RosiesLibraryApp
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(776, 286);
             dataGridView1.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(115, 21);
-            label1.TabIndex = 5;
-            label1.Text = "Rosies Library";
             // 
             // authorText
             // 
@@ -193,7 +185,7 @@ namespace RosiesLibraryApp
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(607, 123);
+            textBox1.Location = new Point(427, 123);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 15;
@@ -201,7 +193,7 @@ namespace RosiesLibraryApp
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(563, 128);
+            label6.Location = new Point(383, 128);
             label6.Name = "label6";
             label6.Size = new Size(45, 15);
             label6.TabIndex = 16;
@@ -311,12 +303,45 @@ namespace RosiesLibraryApp
             label11.TabIndex = 27;
             label11.Text = "Available copies:";
             // 
-            // Form1
+            // userDashboardButton
+            // 
+            userDashboardButton.Location = new Point(651, 123);
+            userDashboardButton.Name = "userDashboardButton";
+            userDashboardButton.Size = new Size(137, 23);
+            userDashboardButton.TabIndex = 28;
+            userDashboardButton.Text = " Go to User Dashboard";
+            userDashboardButton.UseVisualStyleBackColor = true;
+            userDashboardButton.Click += userDashboardButton_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Cambria", 15.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 25);
+            label1.TabIndex = 29;
+            label1.Text = "Rosies Library";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Cambria", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label12.Location = new Point(15, 34);
+            label12.Name = "label12";
+            label12.Size = new Size(106, 15);
+            label12.TabIndex = 30;
+            label12.Text = "Admin Dashboard";
+            // 
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(802, 450);
+            Controls.Add(label12);
+            Controls.Add(label1);
+            Controls.Add(userDashboardButton);
             Controls.Add(label11);
             Controls.Add(label7);
             Controls.Add(copiesUpdate);
@@ -334,12 +359,11 @@ namespace RosiesLibraryApp
             Controls.Add(label4);
             Controls.Add(ISBNText);
             Controls.Add(yearText);
-            Controls.Add(label1);
             Controls.Add(dataGridView1);
             Controls.Add(deleteButton);
             Controls.Add(loadButton);
             Controls.Add(panel1);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
@@ -354,7 +378,6 @@ namespace RosiesLibraryApp
         private Button loadButton;
         private Button deleteButton;
         private DataGridView dataGridView1;
-        private Label label1;
         private TextBox authorText;
         private TextBox titleText;
         private TextBox yearText;
@@ -378,5 +401,8 @@ namespace RosiesLibraryApp
         private Button updateButton;
         private TextBox copiesUpdate;
         private Label label11;
+        private Button userDashboardButton;
+        private Label label1;
+        private Label label12;
     }
 }

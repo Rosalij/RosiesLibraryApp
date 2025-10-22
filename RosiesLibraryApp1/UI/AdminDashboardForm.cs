@@ -1,5 +1,6 @@
 using RosiesLibraryApp.Data;
 using RosiesLibraryApp.Models;
+using RosiesLibraryApp.UI;
 
 namespace RosiesLibraryApp
 {
@@ -64,14 +65,7 @@ namespace RosiesLibraryApp
             LoadBooks();
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow?.DataBoundItem is Book selectedBook)
-            {
-                _bookRepo.DeleteBook(selectedBook.Id);
-                LoadBooks();
-            }
-        }
+
 
         private void LoadButton_Click(object sender, EventArgs e) => LoadBooks();
 
@@ -142,7 +136,7 @@ namespace RosiesLibraryApp
             }
         }
 
-        private void deleteButton_Click_1(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow?.DataBoundItem is Book selectedBook)
             {
@@ -179,6 +173,13 @@ namespace RosiesLibraryApp
             {
                 MessageBox.Show("Select a book first!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void userDashboardButton_Click(object sender, EventArgs e)
+        {
+            var dashboard = new LoginForm();
+            dashboard.ShowDialog();
+
         }
     }
 }
