@@ -121,8 +121,6 @@
             Controls.Add(logoutButton);
             Controls.Add(currentUserText);
             Controls.Add(dataGridView2);
-            Controls.Add(returnButton);
-            Controls.Add(rentButton);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
             Controls.Add(label3);
