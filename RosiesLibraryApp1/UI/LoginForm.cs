@@ -46,7 +46,7 @@ namespace RosiesLibraryApp.UI
 
             if (user != null)
             {
-                MessageBox.Show($"Welcome, {username}!");
+               
                                var userDashboardForm = new UserDashboardForm(user);
                 userDashboardForm.Show();    
                 this.Hide();

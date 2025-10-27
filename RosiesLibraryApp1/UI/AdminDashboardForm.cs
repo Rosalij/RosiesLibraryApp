@@ -178,7 +178,7 @@ namespace RosiesLibraryApp
         private void userDashboardButton_Click(object sender, EventArgs e)
         {
             var dashboard = new LoginForm();
-            dashboard.ShowDialog();
+            dashboard.Show();
 
         }
     }

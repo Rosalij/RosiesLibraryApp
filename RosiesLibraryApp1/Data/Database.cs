@@ -35,16 +35,16 @@ public class Database
                 Password TEXT NOT NULL 
              );";
 
-        string createRentalsTable = @"  
-            CREATE TABLE IF NOT EXISTS Rentals (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                UserId INTEGER NOT NULL,
-                BookId INTEGER NOT NULL,
-                RentDate TEXT NOT NULL,
-                ReturnDate TEXT,
-                FOREIGN KEY(UserId) REFERENCES Users(Id),
-                FOREIGN KEY(BookId) REFERENCES Books(Id)
-             );";
+        string createBorrowedBooksTable = @"
+    CREATE TABLE IF NOT EXISTS BorrowedBooks (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        UserId INTEGER NOT NULL,
+        BookId INTEGER NOT NULL,
+        BorrowDate TEXT NOT NULL,
+        ReturnDate TEXT,
+        FOREIGN KEY(UserId) REFERENCES Users(Id),
+        FOREIGN KEY(BookId) REFERENCES Books(Id)
+    );";
 
         string createReviewsTable = @"
             CREATE TABLE IF NOT EXISTS Reviews (
@@ -63,7 +63,7 @@ public class Database
         using var cmd2 = new SqliteCommand(createUsersTable, conn);
         cmd2.ExecuteNonQuery();
 
-        using var cmd3 = new SqliteCommand(createRentalsTable, conn);
+        using var cmd3 = new SqliteCommand(createBorrowedBooksTable, conn);
         cmd3.ExecuteNonQuery();
 
         using var cmd4 = new SqliteCommand(createReviewsTable, conn);
