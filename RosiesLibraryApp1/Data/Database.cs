@@ -31,7 +31,6 @@ public class Database
             CREATE TABLE IF NOT EXISTS Users (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Username TEXT NOT NULL UNIQUE,
-                Email TEXT NOT NULL UNIQUE,
                 Password TEXT NOT NULL 
              );";
 
@@ -46,7 +45,6 @@ public class Database
         FOREIGN KEY(BookId) REFERENCES Books(Id)
     );";
 
-        string createReviewsTable = @"
             CREATE TABLE IF NOT EXISTS Reviews (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 BookId INTEGER NOT NULL,

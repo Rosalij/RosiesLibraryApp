@@ -58,7 +58,6 @@ namespace RosiesLibraryApp.UI
 
             if (dataGridView2.Columns.Contains("UserId"))
                 dataGridView2.Columns["UserId"].Visible = false;
-        }
 
 
 
@@ -123,13 +122,6 @@ namespace RosiesLibraryApp.UI
                 LoadBorrowedBooks();
             }
         }
-
-        // Placeholder for book reviews
-        private void reviewBookButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Review book feature will go here!");
-        }
-
         // Logout
         private void logoutButton_Click(object sender, EventArgs e)
         {

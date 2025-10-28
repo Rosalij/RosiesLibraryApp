@@ -161,7 +161,6 @@
             ClientSize = new Size(914, 600);
             Controls.Add(logoutButton);
             Controls.Add(currentUserText);
-            Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
             Controls.Add(label3);
