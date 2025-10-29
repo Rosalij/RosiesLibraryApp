@@ -96,7 +96,6 @@ namespace RosiesLibraryApp
             // dataGridView1
             // 
             dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
@@ -183,13 +182,6 @@ namespace RosiesLibraryApp
             label5.TabIndex = 14;
             label5.Text = "Year:";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(427, 123);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 15;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -201,7 +193,6 @@ namespace RosiesLibraryApp
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(addButton);
             panel1.Controls.Add(titleText);

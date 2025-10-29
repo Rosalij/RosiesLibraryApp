@@ -35,7 +35,6 @@
             returnButton = new Button();
             dataGridView2 = new DataGridView();
             currentUserText = new Label();
-            logoutButton = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -124,17 +123,6 @@
             currentUserText.Name = "currentUserText";
             currentUserText.Size = new Size(0, 23);
             currentUserText.TabIndex = 14;
-            // 
-            // logoutButton
-            // 
-            logoutButton.Location = new Point(815, 12);
-            logoutButton.Margin = new Padding(3, 4, 3, 4);
-            logoutButton.Name = "logoutButton";
-            logoutButton.Size = new Size(86, 31);
-            logoutButton.TabIndex = 15;
-            logoutButton.Text = "Log out";
-            logoutButton.UseVisualStyleBackColor = true;
-            logoutButton.Click += logoutButton_Click;
             // 
             // panel1
             // 
