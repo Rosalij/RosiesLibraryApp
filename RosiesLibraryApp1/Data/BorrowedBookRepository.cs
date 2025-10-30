@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿/* This code defines a repository class for managing borrowed books in a library application. */
+using Microsoft.Data.Sqlite;
 using Microsoft.VisualBasic.ApplicationServices;
 using RosiesLibraryApp.Models;
 using System;
@@ -14,13 +15,14 @@ namespace RosiesLibraryApp.Data
         private readonly Database _db;
         public BorrowedBookRepository(Database db) => _db = db;
 
-
+        // Method to get all borrowed books for a specific user
         public List<BorrowedBook> GetBorrowedBooks(int userId)
         {
             var Borrowed = new List<BorrowedBook>();
-            using var conn = new SqliteConnection(_db.ConnectionString);
+            using var conn = _db.GetConnection();
             conn.Open();
 
+            
             using var cmd = new SqliteCommand(@"
         SELECT 
             r.Id, 
@@ -36,11 +38,11 @@ namespace RosiesLibraryApp.Data
         WHERE r.UserId = @UserId", conn);
 
             cmd.Parameters.AddWithValue("@UserId", userId);
-
+            
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
-            {
-                Borrowed.Add(new BorrowedBook
+            { 
+                Borrowed.Add(new BorrowedBook // Populate BorrowedBook object
                 {
                     Id = Convert.ToInt32(reader["Id"]),
                     UserId = Convert.ToInt32(reader["UserId"]),
@@ -49,17 +51,21 @@ namespace RosiesLibraryApp.Data
                     ReturnDate = reader["ReturnDate"] == DBNull.Value ? null : DateTime.Parse(reader["ReturnDate"].ToString()),
                     Author = reader["Author"].ToString(),
                     Title = reader["Title"].ToString(),
+                    ISBN = reader["ISBN"].ToString()
 
                 });
             }
 
-            return Borrowed;
+            return Borrowed; // Return list of borrowed books
         }
 
+
+        // Method to borrow a book, database interaction.
         public bool BorrowBook(int userId, int bookId)
         {
-            using var conn = new SqliteConnection(_db.ConnectionString);
+            using var conn = _db.GetConnection();
             conn.Open();
+
             using var trans = conn.BeginTransaction();
 
             // check user exists
@@ -73,17 +79,19 @@ namespace RosiesLibraryApp.Data
             var copies = Convert.ToInt32(copiesCmd.ExecuteScalar() ?? 0);
             if (copies <= 0) { trans.Rollback(); return false; }
 
-            // decrement and check update affected 1 row
+            //decrement and check update affected 1 row
             using var updateCmd = new SqliteCommand("UPDATE Books SET Copies = Copies - 1 WHERE Id = @BookId", conn, trans);
             updateCmd.Parameters.AddWithValue("@BookId", bookId);
             if (updateCmd.ExecuteNonQuery() != 1) { trans.Rollback(); return false; }
 
-            // insert borrow record
+
+            //insert borrow record
             using var insertCmd = new SqliteCommand(
                 "INSERT INTO BorrowedBooks (UserId, BookId, BorrowDate) VALUES (@UserId, @BookId, @BorrowDate)", conn, trans);
             insertCmd.Parameters.AddWithValue("@UserId", userId);
             insertCmd.Parameters.AddWithValue("@BookId", bookId);
             insertCmd.Parameters.AddWithValue("@BorrowDate", DateTime.Now.ToString("yyyy-MM-dd"));
+          
             insertCmd.ExecuteNonQuery();
 
             trans.Commit();
@@ -92,8 +100,9 @@ namespace RosiesLibraryApp.Data
 
         public void ReturnBook(int userId, int borrowedBookId)
         {
-            using var conn = new SqliteConnection(_db.ConnectionString);
+            using var conn = _db.GetConnection();
             conn.Open();
+
 
             //Get the book ID associated with this borrowed record
             var selectCmd = conn.CreateCommand();

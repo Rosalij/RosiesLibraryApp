@@ -1,4 +1,6 @@
-﻿using System;
+﻿/* User model representing a user in the library application.
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

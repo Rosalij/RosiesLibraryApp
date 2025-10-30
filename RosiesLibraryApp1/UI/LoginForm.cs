@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Form for logging in as a registered user */
+using System;
 using System.Windows.Forms;
-using RosiesLibraryApp.Data;
-
+using RosiesLibraryApp.Services;
+using RosiesLibraryApp.Models;
 
 namespace RosiesLibraryApp.UI
 {
     public partial class LoginForm : Form
     {
-        private readonly UserRepository _userRepo;
+        private readonly UserService _userService;
+        private readonly BookService _bookService;
+        private readonly BorrowService _borrowService;
 
-        public LoginForm()
+        // Constructor injection of services
+        public LoginForm(UserService userService, BookService bookService, BorrowService borrowService)
         {
             InitializeComponent();
-
-            //Initialize database and user repository
-            var db = new Database("library.db");
-            _userRepo = new UserRepository(db);
+            _userService = userService;
+            _bookService = bookService;
+            _borrowService = borrowService;
         }
 
+        // Event handler for the Register button click
         private void registerButton_Click(object sender, EventArgs e)
-        {
-            var registerForm = new RegisterForm(_userRepo);
+        { // Open the registration form
+            var registerForm = new RegisterForm(_userService);
             registerForm.ShowDialog();
         }
 
+
+        // Event handler for the Login button click
         private void loginButton_Click(object sender, EventArgs e)
         {
             string username = usernameText.Text.Trim();
@@ -42,13 +41,13 @@ namespace RosiesLibraryApp.UI
                 return;
             }
 
-            var user = _userRepo.Login(username, password);
+            var user = _userService.Login(username, password);
 
+            // If login is successful, open the user dashboard
             if (user != null)
             {
-               
-                               var userDashboardForm = new UserDashboardForm(user);
-                userDashboardForm.Show();    
+                var userDashboardForm = new UserDashboardForm(user, _bookService, _borrowService, _userService);
+                userDashboardForm.Show();
                 this.Hide();
             }
             else

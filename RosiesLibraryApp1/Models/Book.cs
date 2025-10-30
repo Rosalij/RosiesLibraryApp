@@ -1,4 +1,8 @@
-﻿namespace RosiesLibraryApp.Models;
+﻿/*
+    This class represents a Book in the library system.
+    It includes properties for the book's ID, title, author, ISBN, publication year, and number of copies available.
+*/
+namespace RosiesLibraryApp.Models;
 
 public class Book
 {

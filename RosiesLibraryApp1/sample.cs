@@ -1,4 +1,6 @@
-﻿using RosiesLibraryApp.Models;
+﻿/*Sample data adding sample books in the database. */
+
+using RosiesLibraryApp.Models;
 using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
 
@@ -9,7 +11,7 @@ public static class DatabaseSeeder
     public static void Seed(Database db)
     {
         //Check if table has any books
-        using var conn = new SqliteConnection(db.ConnectionString);
+        using var conn = db.GetConnection();
         conn.Open();
 
         using var checkCmd = new SqliteCommand("SELECT COUNT(*) FROM Books", conn);
@@ -77,7 +79,7 @@ new Book { Title = "Fahrenheit 451", Author = "Ray Bradbury", ISBN = "9781451673
 
         foreach (var book in books)
         {
-            bookRepo.AddBook(book);
+            bookRepo.Add(book);
         }
     }
 }
