@@ -20,7 +20,7 @@ It provides both **Admin** and **User** dashboards to manage and interact with a
 - ✏️ Update existing book information
 - 🗑️ Delete books from the collection
 - 📦 Track multiple copies per book
-- 📋 View all books in a sortable **DataGridView**
+- 📋 View all books in a **DataGridView**
 
 ### 👤 User Dashboard
 - 📚 Browse all available books
