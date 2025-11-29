@@ -64,11 +64,6 @@ TABLE BorrowedBooks
 | `BorrowDate` | TEXT                        | Date the book was borrowed            |
 | `ReturnDate` | TEXT                        | Date the book was returned            |
 
-## 🚀 Getting Started
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/RosiesLibraryApp.git
-cd RosiesLibraryApp
 
 
